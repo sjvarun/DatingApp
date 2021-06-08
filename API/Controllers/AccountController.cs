@@ -55,7 +55,7 @@ public class AccountController : BaseApiController
     }
 
   
-    [HttpGet("login")]
+    [HttpPost("login")]
     public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
     {
         var user = await _dataContext.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.Username.ToLower());

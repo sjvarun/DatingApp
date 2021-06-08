@@ -21,7 +21,7 @@ namespace API.Controllers
             _dataContext = dataContext;
         }
 
-        [Authorize]
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
