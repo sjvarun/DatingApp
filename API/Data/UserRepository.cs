@@ -24,9 +24,9 @@ namespace API.Data
 
         
 
-        public async Task<MembersDto> GetMemberDtoAsync(int id)
+        public async Task<MembersDto> GetMemberDtoAsync(string username)
         {
-            return await _dataContext.Users.Where(x => x.Id == id)
+            return await _dataContext.Users.Where(x => x.UserName == username)
                  .ProjectTo<MembersDto>(_mapper.ConfigurationProvider)
                  .SingleOrDefaultAsync();
         }

@@ -15,7 +15,7 @@ using API.DTOs;
 namespace API.Controllers
 {
   
-    //[Authorize]
+    [Authorize]
     public class UsersController : BaseApiController
     {
         private readonly IUserRepository _userRepository;
@@ -35,14 +35,15 @@ namespace API.Controllers
             return usersToReturn.ToList();
         }
 
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<MembersDto>> GetUser(int id)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<MembersDto>> GetUser(string username)
         {
             //var user = await _userRepository.GetUserByIdAsync(id);
             //var userToReturn = _mapper.Map<MembersDto>(user);
             //return userToReturn;
-            return await _userRepository.GetMemberDtoAsync(id);
+            var user = await _userRepository.GetMemberDtoAsync(username);
+            var usersToReturn = _mapper.Map<MembersDto>(user);
+            return usersToReturn;
         }
     }
 }
